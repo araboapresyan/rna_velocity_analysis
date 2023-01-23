@@ -269,7 +269,7 @@ single_pop_func <- function (emb, vel,int_cla, n = 100, cell.colors = NULL, corr
 
 nsc1_tp_5 <- single_pop_func(emb = Embeddings(object = sc_5, reduction = "umap"),int_cla = int_cl_5,
                         vel = rvel_sc_5,n=300,scale='sqrt',cc = control_velo$cc[a_c_5,a_c_5]
-                        ,cell.colors=ac(cell.colors_5[a_c_5],alpha=0.5),corr.sigma = 0.05
+                        ,cell.colors=ac(cell.colors_5[a_c_5],alpha=0.5),corr.sigma = 0.07
                         ,cex=0.8,arrow.scale=0.7,show.grid.flow=T,
                         min.grid.cell.mass=1,grid.n=15,arrow.lwd=1,do.par=F,
                         cell.border.alpha = 0.2,main = "Control(n=300)",
@@ -300,7 +300,7 @@ int_cl_6 <- grep("NSC-stage1",sc_6@active.ident)
 
 nsc1_tp_6 <- single_pop_func(emb = Embeddings(object = sc_6, reduction = "umap"),int_cla = int_cl_6,
                              vel = rvel_sc_6,n=300,scale='sqrt',cc = TBI_velo$cc[a_c_6,a_c_6]
-                             ,cell.colors=ac(cell.colors_6[a_c_6],alpha=0.5),corr.sigma = 0.05
+                             ,cell.colors=ac(cell.colors_6[a_c_6],alpha=0.5),corr.sigma = 0.07
                              ,cex=0.8,arrow.scale=0.7,show.grid.flow=T,
                              min.grid.cell.mass=1,grid.n=15,arrow.lwd=1,do.par=F,
                              cell.border.alpha = 0.2,main = "Control(n=300)",
