@@ -3,7 +3,7 @@ library(SeuratWrappers)
 library(ggplot2)
 library(velocyto.R)
 library(dplyr)
-library(ggpabr)
+library(ggpubr)
 
 
 ##  AstroNeurontest - seurat object with defined clusters
