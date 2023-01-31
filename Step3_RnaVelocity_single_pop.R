@@ -34,7 +34,7 @@ single_pop_func <- function (emb, vel,int_cla, n = 100, cell.colors = NULL, corr
     celcol <- cell.colors[rownames(emb)]
   }
   plot(emb, bg = celcol, pch = 21, col = ac(1, alpha = cell.border.alpha), 
-       xlab = xlab, ylab = ylab)
+       xlab = xlab, ylab = ylab,...)
   em <- as.matrix(vel$current)
   ccells <- intersect(rownames(emb), colnames(em))
   em <- em[, ccells]
