@@ -1,3 +1,4 @@
+10.5281/zenodo.10777581
 # rna_velocity_analysis
 Single cell RNA seq velocity analysis.
 The workflow starts from Step1_&_2_RnaVelocity.R.
