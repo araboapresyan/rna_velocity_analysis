@@ -1,0 +1,11 @@
+ cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Apresyan"
+  given-names: "Arabo"
+  orcid: "https://orcid.org/0009-0005-9428-7843"
+title: "Traumatic brain injury promotes neurogenesis at the cost of astrogliogenesis in the adult hippocampus."
+version: v1.0
+doi: 10.5281/zenodo.10777581
+date-released: 2024-03-04
+url: "https://github.com/github-linguist/linguist"
