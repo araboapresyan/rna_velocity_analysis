@@ -1,4 +1,4 @@
-#### Velocity estumation for single population ####
+#### Velocity estimation for single population ####
 
 #### control - NSC-stage1 ####
 #a_c(apropriate clusters, the interested cluster and its neighbors)
@@ -275,11 +275,6 @@ nsc1_tp_5 <- single_pop_func(emb = Embeddings(object = sc_5, reduction = "umap")
                         cell.border.alpha = 0.2,main = "Control(n=300)",
                         xaxt="none",yaxt = "none", axes = FALSE)
 
-label_clusters(sc_5@active.ident[-int_cl_5], Embeddings(sc_5, "umap")[-int_cl_5,], font = 2, col = "black",cex = 0.8)
-
-
-
-
 #### TBI - NSC-stage1 ####
 #a_c(apropriate clusters, the interested cluster and its neighbors)
 a_c_6 <- grep("NSC-stage1|NSC-stage2|RG-like",TBI@active.ident)
@@ -290,10 +285,8 @@ cell.colors_sc_6 <- sccore::fac2col(sc_6@active.ident)
 rvel_sc_6 <- list(current = TBI@tools[["RunVelocity"]][["current"]][,a_c_6],
                   deltaE = TBI@tools[["RunVelocity"]][["deltaE"]][,a_c_6])
 
-
 # interested cluster
 int_cl_6 <- grep("NSC-stage1",sc_6@active.ident)
-
 
 
 ## step3
@@ -306,7 +299,6 @@ nsc1_tp_6 <- single_pop_func(emb = Embeddings(object = sc_6, reduction = "umap")
                              cell.border.alpha = 0.2,main = "Control(n=300)",
                              xaxt="none",yaxt = "none", axes = FALSE)
 
-label_clusters(sc_6@active.ident[-int_cl_6], Embeddings(sc_6, "umap")[-int_cl_6,], font = 2, col = "black",cex = 0.8)
 
 
 
