@@ -9,16 +9,16 @@ rv_2 <- nsc1_tp_6  #Step 3 result for TBI
 exp_1 <- "Control"
 exp_2 <- "TBI"
 
-int_cl_name = "NSC-stage1" #interested cluster name
-neighbours = c("NSC-stage1","NSC-stage2","RG-like")
+int_cl_name = "A-stage1" #interested cluster name
+neighbours = c("RG-like","A-stage1","A-stage2")
 
 
-tp_barplot(int_cl_name,neighbours,act_id_1,act_id_2,
+tp_boxplot(int_cl_name,neighbours,act_id_1,act_id_2,
            exp_1,exp_2,rv_1,rv_2)
 
 
 
-tp_barplot <- function(int_cl_name,neighbours,act_id_1,act_id_2,
+tp_boxplot <- function(int_cl_name,neighbours,act_id_1,act_id_2,
                        exp_1,exp_2,rv_1,rv_2) {
   
   #subseting cluster cells form columns
@@ -43,12 +43,11 @@ tp_barplot <- function(int_cl_name,neighbours,act_id_1,act_id_2,
   
   tp_df <- rbind(reshape2::melt(cbind(sample = rep(exp_1,times = length(neighbours)),tp_1_df)),
                  reshape2::melt(cbind(sample = rep(exp_2,times = length(neighbours)),tp_2_df)))
- 
   
   
-  ggbarplot(tp_df, x = "cluster", y = "value", add = "mean_se",ylab = "Transition Probability",xlab = "Cluster",
-            color = "sample", palette = "jco", title = paste(int_cl_name,"Mean Transition Probability"),
-            position = position_dodge(0.8)) +
-    stat_compare_means(aes(group = sample),label = "p.signif",method = "wilcox.test") 
- 
-}
+  ggboxplot(tp_df, x = "cluster", y = "value",ylab = "Transition Probability",xlab = "Cluster",bxp.errorbar = T,
+            fill = "sample", palette = c("#F8766D","#00BFC4"), title = paste(int_cl_name,"Mean Transition Probability")) +
+    stat_compare_means(aes(group = sample),label = "p.signif",method = "wilcox.test",size = 6,label.y.npc = c("top"),vjust = 0.4) +
+    theme(text = element_text(face = "bold"),
+          axis.text.x = element_text(angle = 30,vjust = 0.5),
+          axis.title.x = element_blank())
