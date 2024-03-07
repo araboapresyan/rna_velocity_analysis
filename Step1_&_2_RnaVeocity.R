@@ -13,26 +13,15 @@ small_data <- subset(AstroNeurontest,idents = c("NSC-stage1","NSC-stage2","RG-li
                                                 "N-stage2","N-stage3","N-stage4","N-stage5","N-stage6",
                                                 "A-stage1","A-stage2","A-stage3","A-stage4"))
 
-# clusters before filtering
-DimPlot(AstroNeurontest, reduction = "umap",label = TRUE) + NoLegend() + 
-  theme(line = element_blank(),axis.title = element_blank(),axis.text = element_blank(),
-        title = element_text(hjust = 0.5)) + ggtitle(label = "")
-
-# clusters after filtering
-DimPlot(small_data, reduction = "umap",label = TRUE) + NoLegend() + 
-  theme(line = element_blank(),axis.title = element_blank(),axis.text = element_blank(),
-        title = element_text(hjust = 0.5)) + ggtitle(label = "")
 
 ## separating control and TBI cells ##
 control <- subset(small_data,cells = 1:1412)
 TBI <- subset(small_data,cells = 1413:3314)
 
 
-
-
 #### Adding spliced and unspliced data to seurat object ####
 
-#load loom files
+##load loom files
 S5_ldat <- read.loom.matrices("S5_10X_05042019.loom") #control
 S6_ldat <- read.loom.matrices("S6_10X_05042019.loom") #TBI
 
@@ -77,9 +66,7 @@ TBI[["ambiguous"]] <- S6_Sdat[["ambiguous"]]
 #control
 control <- RunVelocity(object = control, deltaT = 1, kCells = 20, 
                        fit.quantile = 0.02,spliced.average = 0.5,ncores = 10) #Step1
-
 cell.colors_5 <- sccore::fac2col(control@active.ident)
-
 control_velo <- show.velocity.on.embedding.cor(emb = Embeddings(object = control, reduction = "umap"),
                                                vel = Tool(object = control,slot = "RunVelocity"), 
                                                n = 300, scale = "sqrt", cell.colors = ac(x = cell.colors_5, alpha = 0.5), 
@@ -87,21 +74,9 @@ control_velo <- show.velocity.on.embedding.cor(emb = Embeddings(object = control
                                                min.grid.cell.mass = 0.5, grid.n = 40, arrow.lwd = 1, 
                                                do.par = FALSE, cell.border.alpha = 0.1) #Step2
 
-
-label_clusters <- function(labels, coords, ...) {
-  df <- tibble(label = labels, x = coords[,1], y = coords[,2])
-  df <- df %>% 
-    group_by(label) %>% 
-    summarize(x = median(x), y = median(y))
-  text(df$x, df$y, df$label, ...)
-}
-
-label_clusters(control@active.ident, control@reductions$umap@cell.embeddings, font = 2, col = "black",cex = 1)
-
 #TBI
 TBI <- RunVelocity(object = TBI, deltaT = 1, kCells = 20, fit.quantile = 0.02,spliced.average = 0.5,ncores = 10)
 cell.colors_6 <- sccore::fac2col(TBI@active.ident)
-
 TBI_velo <- show.velocity.on.embedding.cor(emb = Embeddings(object = TBI, reduction = "umap"),
                                            vel = Tool(object = TBI,slot = "RunVelocity"), 
                                            n = 300, scale = "sqrt", cell.colors = ac(x = cell.colors_6, alpha = 0.5), 
@@ -109,4 +84,3 @@ TBI_velo <- show.velocity.on.embedding.cor(emb = Embeddings(object = TBI, reduct
                                            min.grid.cell.mass = 0.5, grid.n = 40, arrow.lwd = 1, 
                                            do.par = FALSE, cell.border.alpha = 0.1)
 
-label_clusters(TBI@active.ident, TBI@reductions$umap@cell.embeddings, font = 2, col = "black",cex = 1)
