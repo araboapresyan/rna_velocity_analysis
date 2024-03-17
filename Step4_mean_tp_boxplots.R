@@ -45,3 +45,4 @@ tp_boxplot <- function(int_cl_name,neighbours,act_id_1,act_id_2,
     theme(text = element_text(face = "bold"),
           axis.text.x = element_text(angle = 30,vjust = 0.5),
           axis.title.x = element_blank())
+           }
