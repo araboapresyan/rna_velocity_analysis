@@ -296,7 +296,7 @@ nsc1_tp_6 <- single_pop_func(emb = Embeddings(object = sc_6, reduction = "umap")
                              ,cell.colors=ac(cell.colors_6[a_c_6],alpha=0.5),corr.sigma = 0.07
                              ,cex=0.8,arrow.scale=0.7,show.grid.flow=T,
                              min.grid.cell.mass=1,grid.n=15,arrow.lwd=1,do.par=F,
-                             cell.border.alpha = 0.2,main = "Control(n=300)",
+                             cell.border.alpha = 0.2,main = "TBI(n=300)",
                              xaxt="none",yaxt = "none", axes = FALSE)
 
 
